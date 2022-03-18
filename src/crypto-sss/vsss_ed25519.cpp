@@ -12,40 +12,41 @@ using safeheron::curve::CurveType;
 
 namespace safeheron{
 namespace sss {
+namespace vsss_ed25519 {
 static const Curve *curv = GetCurveParam(CurveType::ED25519);
 
-void VsssEd25519::MakeShares(vector<Point> &shares, const BN &secret, int threshold, const vector<BN> &shareIndexs) {
-    VSSS::MakeShares(shares, secret, threshold, shareIndexs, curv->n);
+void MakeShares(vector<Point> &shares, const BN &secret, int threshold, const vector<BN> &shareIndexs) {
+    vsss::MakeShares(shares, secret, threshold, shareIndexs, curv->n);
 }
 
-void VsssEd25519::MakeSharesWithCommits(vector<Point> &shares, vector<CurvePoint> &commits, const BN &secret,
+void MakeSharesWithCommits(vector<Point> &shares, vector<CurvePoint> &commits, const BN &secret,
                                           int threshold, const vector<BN> &shareIndexs) {
-    VSSS::MakeSharesWithCommits(shares, commits, secret, threshold, shareIndexs, curv->n, curv->g);
+    vsss::MakeSharesWithCommits(shares, commits, secret, threshold, shareIndexs, curv->n, curv->g);
 }
 
-void VsssEd25519::MakeSharesWithCommits(vector<Point> &shares, vector<CurvePoint> &commits, const BN &secret,
+void MakeSharesWithCommits(vector<Point> &shares, vector<CurvePoint> &commits, const BN &secret,
                                           int threshold, int num) {
     vector<BN> shareIndexs;
     for(int i = 1; i <= num; i ++){
         shareIndexs.push_back(BN(i));
     }
-    VSSS::MakeSharesWithCommits(shares, commits, secret, threshold, shareIndexs, curv->n, curv->g);
+    vsss::MakeSharesWithCommits(shares, commits, secret, threshold, shareIndexs, curv->n, curv->g);
 }
 
-void VsssEd25519::MakeSharesWithCommitsAndCoes(vector<Point> &shares, vector<CurvePoint> &commits, const BN &secret,
+void MakeSharesWithCommitsAndCoes(vector<Point> &shares, vector<CurvePoint> &commits, const BN &secret,
                                                  int threshold, const vector<BN> &shareIndexs,
                                                  const vector<BN> &coeArray) {
-    VSSS::MakeSharesWithCommitsAndCoes(shares, commits, secret, threshold, shareIndexs, coeArray, curv->n, curv->g);
+    vsss::MakeSharesWithCommitsAndCoes(shares, commits, secret, threshold, shareIndexs, coeArray, curv->n, curv->g);
 }
 
-bool VsssEd25519::VerifyShare(const vector<CurvePoint> &commits, const BN &shareIndex, const BN &share) {
-    return VSSS::VerifyShare(commits, shareIndex, share, curv->g, curv->n);
+bool VerifyShare(const vector<CurvePoint> &commits, const BN &shareIndex, const BN &share) {
+    return vsss::VerifyShare(commits, shareIndex, share, curv->g, curv->n);
 }
 
-void VsssEd25519::RecoverSecret(BN &secret, const vector<Point> &shares) {
-    //, BN &prime
-    VSSS::RecoverSecret(secret, shares, curv->n);
+void RecoverSecret(BN &secret, const vector<Point> &shares) {
+    vsss::RecoverSecret(secret, shares, curv->n);
 }
 
+}
 }
 }

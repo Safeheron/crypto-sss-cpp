@@ -15,7 +15,7 @@ using namespace safeheron::rand;
 using safeheron::curve::Curve;
 using safeheron::curve::CurveType;
 using safeheron::curve::CurvePoint;
-using safeheron::sss::VsssSecp256k1;
+using namespace safeheron::sss;
 using safeheron::sss::Point;
 using safeheron::sss::Polynomial;
 using std::vector;
@@ -33,7 +33,7 @@ TEST(Secret_Sharing_Scheme, Example1)
     shareIndexs.push_back(BN("112151915674366125816987068530776935594844345", 16));
     shareIndexs.push_back(BN("112151915674366125816987068530776935594844346", 16));
     shareIndexs.push_back(BN("112151915674366125816987068530776935594844347", 16));
-    VsssSecp256k1::MakeShares(shares, secret, threshold, shareIndexs);
+    vsss_secp256k1::MakeShares(shares, secret, threshold, shareIndexs);
 
     for(int i = 0; i < shares.size(); i++){
         std::string str;
@@ -48,11 +48,11 @@ TEST(Secret_Sharing_Scheme, Example1)
     for(int i = 0; i < 3; i++){
         new_shares.push_back(shares[i]);
     }
-    VsssSecp256k1::RecoverSecret(recovered_secret, shares);
+    vsss_secp256k1::RecoverSecret(recovered_secret, shares);
 
     EXPECT_TRUE(secret == recovered_secret);
 
-    VsssSecp256k1::RecoverSecret(recovered_secret, new_shares);
+    vsss_secp256k1::RecoverSecret(recovered_secret, new_shares);
 
     EXPECT_TRUE(secret == recovered_secret);
 
@@ -82,7 +82,7 @@ TEST(Secret_Sharing_Scheme, Example2)
     shareIndexs.push_back(BN("112151915674366125816987068530776935594844345", 16));
     shareIndexs.push_back(BN("112151915674366125816987068530776935594844346", 16));
     shareIndexs.push_back(BN("112151915674366125816987068530776935594844347", 16));
-    VsssSecp256k1::MakeSharesWithCommits(shares, cmts, secret, threshold, shareIndexs);
+    vsss_secp256k1::MakeSharesWithCommits(shares, cmts, secret, threshold, shareIndexs);
 
     for(int i = 0; i < shares.size(); i++){
         std::string str;
@@ -90,11 +90,11 @@ TEST(Secret_Sharing_Scheme, Example2)
         std::cout << "x: " << str << std::endl;
         shares[i].y.ToHexStr(str);
         std::cout << "y: " << str << std::endl;
-        EXPECT_TRUE(VsssSecp256k1::VerifyShare(cmts, shares[i].x, shares[i].y));
+        EXPECT_TRUE(vsss_secp256k1::VerifyShare(cmts, shares[i].x, shares[i].y));
     }
 
     BN recovered_secret;
-    VsssSecp256k1::RecoverSecret(recovered_secret, shares);
+    vsss_secp256k1::RecoverSecret(recovered_secret, shares);
 
     EXPECT_TRUE(secret == recovered_secret);
 }
@@ -115,7 +115,7 @@ TEST(Secret_Sharing_Scheme, Example3)
     vector<BN> coeArray;
     coeArray.push_back(BN("3d850101adaa64487171f1c315b732574e98d93ba37166f22a6b128378dc05cc", 16));
     coeArray.push_back(BN("b7720173898dca45bb97b04dbde5ff79a3647f2d2e0c5c4c0fb81b9afa7f9a44", 16));
-    VsssSecp256k1::MakeSharesWithCommitsAndCoes(shares, cmts, secret, threshold, shareIndexs,coeArray);
+    vsss_secp256k1::MakeSharesWithCommitsAndCoes(shares, cmts, secret, threshold, shareIndexs,coeArray);
 
     for(int i = 0; i < shares.size(); i++){
         std::string str;
@@ -123,11 +123,11 @@ TEST(Secret_Sharing_Scheme, Example3)
         std::cout << "x: " << str << std::endl;
         shares[i].y.ToHexStr(str);
         std::cout << "y: " << str << std::endl;
-        EXPECT_TRUE(VsssSecp256k1::VerifyShare(cmts, shares[i].x, shares[i].y));
+        EXPECT_TRUE(vsss_secp256k1::VerifyShare(cmts, shares[i].x, shares[i].y));
     }
 
     BN recovered_secret;
-    VsssSecp256k1::RecoverSecret(recovered_secret, shares);
+    vsss_secp256k1::RecoverSecret(recovered_secret, shares);
 
     EXPECT_TRUE(secret == recovered_secret);
 }
@@ -144,7 +144,7 @@ TEST(Secret_Sharing_Scheme, Example4)
     shareIndexs.push_back(BN("112151915674366125816987068530776935594844345", 16));
     shareIndexs.push_back(BN("112151915674366125816987068530776935594844346", 16));
     shareIndexs.push_back(BN("112151915674366125816987068530776935594844347", 16));
-    VsssSecp256k1::MakeSharesWithCommits(shares, cmts, secret, threshold, shareIndexs);
+    vsss_secp256k1::MakeSharesWithCommits(shares, cmts, secret, threshold, shareIndexs);
 
     for(int i = 0; i < shares.size(); i++){
         std::string str;
@@ -152,11 +152,11 @@ TEST(Secret_Sharing_Scheme, Example4)
         std::cout << "x: " << str << std::endl;
         shares[i].y.ToHexStr(str);
         std::cout << "y: " << str << std::endl;
-        EXPECT_TRUE(VsssSecp256k1::VerifyShare(cmts, shares[i].x, shares[i].y));
+        EXPECT_TRUE(vsss_secp256k1::VerifyShare(cmts, shares[i].x, shares[i].y));
     }
 
     BN recovered_secret;
-    VsssSecp256k1::RecoverSecret(recovered_secret, shares);
+    vsss_secp256k1::RecoverSecret(recovered_secret, shares);
 
     EXPECT_TRUE(secret == recovered_secret);
 }
@@ -169,7 +169,7 @@ TEST(Secret_Sharing_Scheme, Example5)
     int num = 4;
     vector<CurvePoint> cmts;
     vector<Point> shares;
-    VsssSecp256k1::MakeSharesWithCommits(shares, cmts, secret, threshold, num);
+    vsss_secp256k1::MakeSharesWithCommits(shares, cmts, secret, threshold, num);
 
     for(int i = 0; i < shares.size(); i++){
         std::string str;
@@ -177,11 +177,11 @@ TEST(Secret_Sharing_Scheme, Example5)
         std::cout << "x: " << str << std::endl;
         shares[i].y.ToHexStr(str);
         std::cout << "y: " << str << std::endl;
-        EXPECT_TRUE(VsssSecp256k1::VerifyShare(cmts, shares[i].x, shares[i].y));
+        EXPECT_TRUE(vsss_secp256k1::VerifyShare(cmts, shares[i].x, shares[i].y));
     }
 
     BN recovered_secret;
-    VsssSecp256k1::RecoverSecret(recovered_secret, shares);
+    vsss_secp256k1::RecoverSecret(recovered_secret, shares);
     EXPECT_TRUE(secret == recovered_secret);
 }
 

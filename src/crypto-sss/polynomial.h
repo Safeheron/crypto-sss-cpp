@@ -2,8 +2,8 @@
 // Created by 何剑虹 on 2021/6/7.
 //
 
-#ifndef CPP_MPC_POLYNOMIAL_H
-#define CPP_MPC_POLYNOMIAL_H
+#ifndef SAFEHERON_CRYPTO_POLYNOMIAL_H
+#define SAFEHERON_CRYPTO_POLYNOMIAL_H
 
 #include <vector>
 #include "crypto-curve/curve.h"
@@ -38,6 +38,6 @@ public:
     static void GetLArray(std::vector<safeheron::bignum::BN> &lArr, const safeheron::bignum::BN &x, const std::vector<safeheron::bignum::BN> &xArr, const safeheron::bignum::BN &prime );
 };
 
-};
-};
-#endif //CPP_MPC_POLYNOMIAL_H
+}
+}
+#endif //SAFEHERON_CRYPTO_POLYNOMIAL_H
