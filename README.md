@@ -71,8 +71,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 ## Example
 
 ```c++
-#include "crypto-bn/rand.h"
-#include "crypto-encode/base64.h"
+#include "crypto-bn/bn.h"
 #include "crypto-curve/curve.h"
 #include "crypto-sss/vsss_secp256k1.h"
 
@@ -116,7 +115,7 @@ int main(){
 ```
 
 # Usage
-## Namespace - safeheron::sss::Polynomial
+## Class - safeheron::sss::Polynomial
 >- Polynomial(const std::vector<safeheron::bignum::BN> &coeArr, const safeheron::bignum::BN &prime) - Constructor of Polynomial
 >- Polynomial(const safeheron::bignum::BN &secret, const std::vector<safeheron::bignum::BN> &coeArr, const safeheron::bignum::BN &prime) - Constructor of Polynomial
 >- CreateRandomPolynomial(const safeheron::bignum::BN &secret, int threshold, const safeheron::bignum::BN &prime) - Create a random Polynomial with specified secret and threshold.
