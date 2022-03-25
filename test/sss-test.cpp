@@ -1,5 +1,5 @@
 //
-// Created by 何剑虹 on 2020/10/22.
+// Created by Sword03 on 2020/10/22.
 //
 #include <cstring>
 #include <vector>
@@ -35,7 +35,7 @@ TEST(Secret_Sharing_Scheme, Example1)
     shareIndexs.push_back(BN("112151915674366125816987068530776935594844347", 16));
     vsss_secp256k1::MakeShares(shares, secret, threshold, shareIndexs);
 
-    for(int i = 0; i < shares.size(); i++){
+    for(size_t i = 0; i < shares.size(); i++){
         std::string str;
         shares[i].x.ToHexStr(str);
         std::cout << "x: " << str << std::endl;
@@ -84,7 +84,7 @@ TEST(Secret_Sharing_Scheme, Example2)
     shareIndexs.push_back(BN("112151915674366125816987068530776935594844347", 16));
     vsss_secp256k1::MakeSharesWithCommits(shares, cmts, secret, threshold, shareIndexs);
 
-    for(int i = 0; i < shares.size(); i++){
+    for(size_t i = 0; i < shares.size(); i++){
         std::string str;
         shares[i].x.ToHexStr(str);
         std::cout << "x: " << str << std::endl;
@@ -117,7 +117,7 @@ TEST(Secret_Sharing_Scheme, Example3)
     coeArray.push_back(BN("b7720173898dca45bb97b04dbde5ff79a3647f2d2e0c5c4c0fb81b9afa7f9a44", 16));
     vsss_secp256k1::MakeSharesWithCommitsAndCoes(shares, cmts, secret, threshold, shareIndexs,coeArray);
 
-    for(int i = 0; i < shares.size(); i++){
+    for(size_t i = 0; i < shares.size(); i++){
         std::string str;
         shares[i].x.ToHexStr(str);
         std::cout << "x: " << str << std::endl;
@@ -146,7 +146,7 @@ TEST(Secret_Sharing_Scheme, Example4)
     shareIndexs.push_back(BN("112151915674366125816987068530776935594844347", 16));
     vsss_secp256k1::MakeSharesWithCommits(shares, cmts, secret, threshold, shareIndexs);
 
-    for(int i = 0; i < shares.size(); i++){
+    for(size_t i = 0; i < shares.size(); i++){
         std::string str;
         shares[i].x.ToHexStr(str);
         std::cout << "x: " << str << std::endl;
@@ -171,7 +171,7 @@ TEST(Secret_Sharing_Scheme, Example5)
     vector<Point> shares;
     vsss_secp256k1::MakeSharesWithCommits(shares, cmts, secret, threshold, num);
 
-    for(int i = 0; i < shares.size(); i++){
+    for(size_t i = 0; i < shares.size(); i++){
         std::string str;
         shares[i].x.ToHexStr(str);
         std::cout << "x: " << str << std::endl;

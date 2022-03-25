@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(test)
+project(example)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_BUILD_TYPE "Release")
@@ -16,15 +16,15 @@ find_package(OpenSSL REQUIRED)
 find_package(CryptoBN REQUIRED)
 find_package(CryptoSSS REQUIRED)
 
-add_executable(sss-test sss-test.cpp)
-target_include_directories(sss-test PUBLIC
+add_executable(${PROJECT_NAME} example.cpp)
+target_include_directories(${PROJECT_NAME} PUBLIC
         ${CryptoBN_INCLUDE_DIRS}
         ${CryptoSSS_INCLUDE_DIRS}
         ${OPENSSL_INCLUDE_DIR}
         ${GTEST_INCLUDE_DIRS}
 )
 
-target_link_libraries( sss-test PUBLIC
+target_link_libraries(${PROJECT_NAME} PUBLIC
         CryptoBN
         CryptoSSS
         ${GTEST_BOTH_LIBRARIES}

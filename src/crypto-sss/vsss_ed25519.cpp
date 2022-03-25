@@ -1,5 +1,5 @@
 //
-// Created by 何剑虹 on 2021/6/7.
+// Created by Sword03 on 2021/6/7.
 //
 
 #include "vsss_ed25519.h"
