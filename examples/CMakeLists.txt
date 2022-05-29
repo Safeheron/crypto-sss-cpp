@@ -18,14 +18,15 @@ find_package(CryptoSSS REQUIRED)
 
 add_executable(${PROJECT_NAME} example.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC
-        ${CryptoBN_INCLUDE_DIRS}
         ${CryptoSSS_INCLUDE_DIRS}
         ${OPENSSL_INCLUDE_DIR}
-        ${GTEST_INCLUDE_DIRS}
+        /usr/local/include  # This directory is included default on linux but not on Mac os
 )
 
+# This directory is included default on linux but not on Mac os
+target_link_directories(${PROJECT_NAME} PUBLIC /usr/local/lib)
+
 target_link_libraries(${PROJECT_NAME} PUBLIC
-        CryptoBN
         CryptoSSS
-        ${GTEST_BOTH_LIBRARIES}
+        OpenSSL::Crypto
         pthread )
