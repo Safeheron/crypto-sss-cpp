@@ -1,6 +1,3 @@
-//
-// Created by Sword03 on 2020/10/22.
-//
 #include <cstring>
 #include <vector>
 #include <google/protobuf/stubs/common.h>
