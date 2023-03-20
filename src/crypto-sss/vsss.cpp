@@ -22,7 +22,7 @@ void MakeSharesWithCommits(vector<Point> &shares, vector<CurvePoint> &commits, c
 
 void MakeSharesWithCommitsAndCoes(vector<Point> &shares, vector<CurvePoint> &commits, const BN &secret, int threshold,
                                  const vector<BN> &shareIndexs, const vector<BN> &coeArray, const BN &prime, const CurvePoint &g) {
-    assert(coeArray.size() + 1 == threshold);
+    assert((int)(coeArray.size() + 1) == threshold);
     Polynomial poly(secret, coeArray, prime);
     poly.GetPoints(shares, shareIndexs);
     poly.GetCommits(commits, g);
